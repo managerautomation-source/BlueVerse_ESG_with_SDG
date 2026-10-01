@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BlueVerse ESG – SDG Dashboard (Car Wash Water Recycling)</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef5f5;--card:#fff;--ink:#0f2a2e;--mut:#5b7479;--line:#d6e3e4;--teal:#1b9aa0;--ok:#2e9e4f;--warn:#e0a000;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1c1f;--card:#12292d;--ink:#e6f2f2;--mut:#8fb0b4;--line:#244146;--teal:#3cc4cb}}
+:root[data-theme="dark"]{--bg:#0c1c1f;--card:#12292d;--ink:#e6f2f2;--mut:#8fb0b4;--line:#244146;--teal:#3cc4cb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.45}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 20px;background:var(--teal);color:#fff}
+header h1{font-size:20px;margin:0;font-weight:700}header p{margin:2px 0 0;font-size:13px;opacity:.9}
+.live{font-size:13px;display:flex;gap:8px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:#7dff9b;animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.tb{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:8px;padding:4px 10px}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+nav button{flex:none;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:5px 12px 5px 5px}
+nav button b{min-width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px}
+nav button[aria-selected=true]{border-color:var(--teal);box-shadow:inset 0 0 0 1px var(--teal);font-weight:600}
+main{max-width:1180px;margin:0 auto;padding:20px}
+.hero{border-radius:14px;padding:20px;color:#fff;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.hero .n{font-size:64px;font-weight:700;line-height:1}.hero h2{margin:0;font-size:24px}.hero p{margin:4px 0 0;max-width:640px;opacity:.95}
+.hero .idx{margin-left:auto;text-align:center;background:rgba(255,255,255,.18);border-radius:12px;padding:10px 18px}.idx span{font-size:30px;font-weight:700;display:block}
+.chip{display:inline-block;font-size:12px;border-radius:999px;padding:2px 10px;background:rgba(255,255,255,.22);margin-top:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:16px 0}
+.k{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.k small{color:var(--mut);display:block;font-size:12.5px}.k strong{font-size:26px;font-weight:700}.k em{font-style:normal;color:var(--mut);font-size:13px;margin-left:3px}
+.k svg{width:100%;height:30px;display:block;margin-top:4px}
+.st{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--ok);margin-right:6px}.st.w{background:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+section h3{margin:0 0 8px;font-size:16px}
+.sc{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;color:var(--mut);font-weight:500;border-bottom:1px solid var(--ink);padding:6px 8px 6px 0}
+td{padding:7px 8px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;min-width:70px}.bar i{display:block;height:100%}
+ul{margin:0;padding-left:18px}li{margin:5px 0}
+.alert b{color:var(--warn)}.kpiout{margin-top:8px;font-size:13.5px;color:var(--mut);font-style:italic}
+.stmt{font-style:italic}
+.stmt button{margin-top:10px;font-style:normal;border:1px solid var(--teal);background:none;color:var(--teal);border-radius:8px;padding:4px 12px}
+.ov{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:14px}
+.oc{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:0;text-align:left;color:var(--ink);overflow:hidden}
+.oc div{padding:10px 12px;color:#fff;font-weight:600;display:flex;justify-content:space-between}
+.oc p{margin:0;padding:10px 12px;font-size:13.5px;color:var(--mut)}
+.tag{font-size:11.5px;border-radius:6px;padding:1px 7px;border:1px solid currentColor}
+footer{color:var(--mut);font-size:12.5px;padding:8px 0 24px}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>BlueVerse ESG – UN SDG Dashboard</h1><p>Car Wash Water Recycling System · live IoT evidence (demo values)</p></div>
+ <div class="live"><span class="dot"></span><span id="clk"></span><button class="tb" id="th" aria-label="Toggle theme">Theme</button></div>
+</header>
+<nav id="nav" role="tablist" aria-label="SDG tabs"></nav>
+<main id="main"></main>
+<script>
+// k: [label, value, unit, decimals, jitter, warn?]  rows: [metric, value, note]
+const C={3:'#4C9F38',4:'#C5192D',6:'#26BDE2',8:'#A21942',9:'#FD6925',11:'#FD9D24',12:'#BF8B2E',13:'#3F7E44',14:'#0A97D9',15:'#56C02B',17:'#19486A'};
+const S={
+8:{n:'Decent Work & Economic Growth',o:'Promote sustained, inclusive economic growth, productive employment and decent work for all',f:'IoT-live',idx:89,
+ k:[['Equipment Uptime',97.5,'%',1,.3],['Washes per Day',412,'',0,1],['Automation-Assisted Tasks',74,'%',0,.5],['Operating Cost Saved',86000,'₹/mo',0,.2],['Safety Incidents (30d)',0,'',0,0]],
+ t:[['Productivity & Technology Upgrading',[['Avg wash cycle time','6.8 min','↓ faster'],['Washes per employee / shift','41','↑'],['Unplanned downtime','2.5%','↓'],['Manual interventions / day','9','↓']],'Higher economic productivity through technology upgrading'],
+    ['Workforce Upskilling & Safe Work',[['Staff trained on automation','96%','Target 100%'],['Skill certifications (YTD)','38','↑'],['Days without injury','64','Live counter'],['Digital SOP usage','312 scans/mo','↑']],'Decent, safer jobs with higher-value skills']],
+ m:[['8.2','Higher productivity via technology & innovation','Uptime 97.5%, 74% automated tasks'],['8.8','Safe & secure working environments','0 incidents, 64 days injury-free']],
+ a:[['Equipment uptime < 95%','Raise maintenance ticket'],['Certification expiring in 14 days','Auto-assign refresher module'],['Downtime > 5% in a shift','Notify shift supervisor']],
+ s:'The site ran at {0}% equipment uptime, handled {1} washes today with {2}% of tasks automated, and saved ₹{3} this month with zero safety incidents, supporting SDG 8 – Decent Work & Economic Growth.',
+ src:'PLC/SCADA, MES wash counter, HRMS/LMS, CMMS'},
+9:{n:'Industry, Innovation & Infrastructure',o:'Build resilient infrastructure and promote sustainable industrialization and innovation',f:'IoT-live',idx:93,
+ k:[['Sensors Online',100,'%',0,0],['Automation Coverage',94,'%',0,.4],['Water Saved per Car',85,'L',0,.5],['Energy per Wash',0.82,'kWh',2,1.5],['Predictive Alerts Resolved',96,'%',0,.5]],
+ t:[['Resource-Efficient Infrastructure',[['Water reuse ratio','87%','Target ≥ 85%'],['Pump efficiency','92%','↑'],['Energy per wash','0.82 kWh','Benchmark 1.05'],['Filtration runtime','12 hrs/day','Optimised']],'Retrofit delivering clean, resource-efficient operations'],
+    ['Digital & Innovation Readiness',[['PLC/IoT assets connected','100%','All streaming'],['Data refresh','30 sec','Real-time'],['Predictive maintenance models','4 active','Pump, filter, dosing, sludge'],['Remote ops sessions','18 (YTD)','↑']],'Technology adoption in an industrial process']],
+ m:[['9.4','Upgrade infrastructure with resource-use efficiency & clean technologies','87% reuse, 0.82 kWh/wash vs 1.05 benchmark'],['9.c','Access to ICT (monitoring & reporting)','100% sensors online']],
+ a:[['Sensor offline > 5 min','Switch to fallback, ping technician'],['Pump efficiency < 85%','Schedule preventive maintenance'],['Energy/wash > benchmark','Review pump & blower runtime']],
+ s:'The plant kept {0}% of sensors online, automated {1}% of operations, saved {2} L of water per car and used {3} kWh per wash, supporting SDG 9 – Industry, Innovation & Infrastructure.',
+ src:'PLC/SCADA, energy meters, CMMS, edge gateway logs'},
+11:{n:'Sustainable Cities & Communities',o:'Make cities and human settlements inclusive, safe, resilient and sustainable',f:'IoT-live',idx:90,
+ k:[['Municipal Water Relieved',1240,'m³/mo',0,.1],['Untreated Discharge Events',0,'',0,0],['Sludge Sent to Authorised Vendor',100,'%',0,0],['Effluent Compliance',99,'%',0,.2],['Odor Index',1.2,'/10',1,3]],
+ t:[['Urban Water & Waste Impact',[['Fresh water intake','320 m³/day','↓ vs baseline'],['Recycled water used','278 m³/day','↑'],['Sludge generated','41 kg/day','Managed'],['Last sludge pickup','12 days ago','Within SLA']],'Lower per-capita environmental impact on the city'],
+    ['Neighbourhood Air & Quality',[['Odor & microbial control','Normal','Safe'],['Noise level','72 dB','Limit 75 dB'],['Hygiene complaints (30d)','0','Community'],['Discharge to storm drain','0 L','Blocked']],'No adverse effects on surrounding community']],
+ m:[['11.6','Reduce adverse per-capita environmental impact of cities (waste management)','Sludge manifest + 0 untreated discharge'],['6.3 link','Water recycling relieves municipal supply','1,240 m³/mo saved']],
+ a:[['Sludge tank > 70%','Schedule vendor pickup'],['Odor index > 4','Dose disinfectant, inspect tank'],['Any discharge to drain','Close valve, alert EHS']],
+ s:'The site relieved {0} m³ of municipal water this month, recorded {1} untreated discharge events and sent {2}% of sludge to authorised handlers, supporting SDG 11 – Sustainable Cities & Communities.',
+ src:'Flow meters, tank level sensors, vendor manifests, odor sensor'},
+12:{n:'Responsible Consumption & Production',o:'Ensure sustainable consumption and production patterns',f:'IoT-live',idx:91,
+ k:[['Water Reuse Ratio',87,'%',0,.3],['Chemical per Car',22,'ml',0,1],['Sludge Recycled / Safely Handled',100,'%',0,0],['Chemical Reduction vs Baseline',27,'%',0,.5],['Sustainability Report',100,'% auto',0,0]],
+ t:[['Efficient Use of Natural Resources',[['Fresh water saved','1,240 m³/mo','↑'],['Water saved per car','85 L','↑'],['Electricity per wash','0.82 kWh','↓'],['Recycling energy','0.21 kWh/m³','Stable']],'Sustainable management of water & energy'],
+    ['Chemicals & Waste Reduction',[['Detergent dosing','22 ml/car','Baseline 30'],['Total chemicals','18.4 L/day','↓'],['Auto-dosing coverage','100%','No manual handling'],['Waste generated','41 kg/day sludge','Reduced via reuse']],'Environmentally sound chemicals and less waste']],
+ m:[['12.2','Sustainable management & efficient use of natural resources','87% reuse, 1,240 m³ saved'],['12.4','Environmentally sound chemicals management','−27% chemicals per wash'],['12.5','Reduce waste via prevention, reduction, recycling','Sludge tracked end-to-end'],['12.6','Companies report sustainability information','Auto-generated ESG report']],
+ a:[['Reuse ratio < 80%','Check filter & RO performance'],['Chemical/car > 30 ml','Recalibrate dosing pump'],['Report data gap > 1 day','Flag sensor & re-sync']],
+ s:'The site recycled {0}% of its water, used just {1} ml of detergent per car ({3}% below baseline) and automated its sustainability reporting, supporting SDG 12 – Responsible Consumption & Production.',
+ src:'Water meters, dosing controllers, tank sensors, ESG report engine'},
+13:{n:'Climate Action',o:'Take urgent action to combat climate change and its impacts',f:'IoT-live',idx:88,
+ k:[['CO₂e Avoided Today',145,'kg',0,.4],['Energy per Wash',0.82,'kWh',2,1.5],['Energy Saved vs Benchmark',22,'%',0,.5],['Recycling Energy',0.21,'kWh/m³',2,1.5],['Awareness Sessions (YTD)',6,'',0,0]],
+ t:[['Emissions & Energy',[['CO₂e avoided (today)','145 kg','↑'],['CO₂e avoided (month)','4,350 kg','Counter'],['Electricity per wash','0.82 kWh','Benchmark 1.05'],['Peak load','11.4 kW','Managed']],'Reduced emissions from water supply and energy use'],
+    ['Awareness & Capacity',[['Staff sensitised on climate & water','96%','Target 100%'],['Community sessions','6','Students 420'],['Water conservation workshops','4','↑'],['Early-warning drought stress relief','1,240 m³/mo','Municipal supply']],'Awareness-raising and institutional capacity']],
+ m:[['13.3','Improve education, awareness-raising & capacity on climate change mitigation','6 sessions, 420 reached, 145 kg/day CO₂e avoided']],
+ a:[['kWh/wash > benchmark','Optimise pump schedule'],['CO₂e avoided drops 20% vs 7-day avg','Investigate reuse ratio'],['Meter data gap','Estimate & flag audit note']],
+ s:'Today the site avoided {0} kg of CO₂e, used {1} kWh per wash ({2}% under benchmark) and ran climate awareness sessions, supporting SDG 13 – Climate Action.',
+ src:'Energy meters, water meters, emission-factor table, LMS'},
+14:{n:'Life Below Water',o:'Conserve and sustainably use oceans, seas and marine resources',f:'Partly IoT (nutrient data may need lab or extra sensor)',idx:86,
+ k:[['Untreated Discharge Events',0,'',0,0],['Oil & Grease',4.1,'mg/L',1,2],['Nitrate-N (est.)',6.4,'mg/L',1,3,1],['Phosphate (est.)',0.7,'mg/L',1,3,1],['Effluent Compliance',99,'%',0,.2]],
+ t:[['Land-Based Pollution Prevention',[['Turbidity','3.2 NTU','Limit ≤ 5'],['TSS','45 mg/L','Limit ≤ 50'],['BOD','18 mg/L','Limit ≤ 20'],['Surfactant load','Low','↓ with dosing']],'No marine pollution from wash effluent'],
+    ['Nutrient Pollution (Eutrophication)',[['Nitrate-N','6.4 mg/L','Limit 10'],['Phosphate','0.7 mg/L','Limit 1.0'],['Phosphate-free detergent','Yes','Verified'],['Discharge to drains/water bodies','0 L','Closed loop']],'Eutrophication avoided']],
+ m:[['14.1','Prevent & reduce marine pollution from land-based activities, incl. nutrient pollution','0 discharge events, nutrients under limit']],
+ a:[['Nutrient > 80% of limit','Switch detergent batch, retest'],['Oil & grease > 8 mg/L','Backwash oil separator'],['Any discharge event','Isolate outlet, notify EHS']],
+ s:'The site recorded {0} untreated discharge events, kept oil and grease at {1} mg/L and nutrients below limits, supporting SDG 14 – Life Below Water by preventing land-based pollution.',
+ src:'Turbidity/pH/O&G probes, lab reports (N, P), valve position sensors'},
+15:{n:'Life on Land',o:'Protect, restore and promote sustainable use of terrestrial ecosystems',f:'Partly IoT (groundwater & soil data needs extra sensors)',idx:84,
+ k:[['Fresh Water Drawn Avoided',1240,'m³/mo',0,.1],['Fresh Water Intake',320,'m³/day',0,.5],['Reuse Ratio',87,'%',0,.3],['Sludge Uncontrolled Dumping',0,'events',0,0],['Treated Water for Greening',0,'m³/day',0,0,1]],
+ t:[['Lower Pressure on Freshwater Sources',[['Fresh water intake','320 m³/day','↓'],['Recycled water','278 m³/day','↑'],['Borewell / river draw avoided','1,240 m³/mo','Estimated'],['Water loss (leakage)','2%','Target < 5%']],'Reduced water usage protects freshwater ecosystems'],
+    ['Soil & Land Protection',[['Sludge disposal route','Authorised vendor','Manifest-linked'],['Uncontrolled land dumping','0','Verified'],['Landscape reuse of treated water','Pilot (not live)','Opportunity'],['Soil contamination checks','Manual','Add sensor?']],'Prevent land degradation']],
+ m:[['15.1','Conservation & sustainable use of terrestrial and inland freshwater ecosystems','Reduced fresh water draw, 0 land dumping']],
+ a:[['Leak > 5%','Trigger maintenance team'],['Sludge unmanifested','Block disposal, alert EHS'],['Intake > 110% of 7-day avg','Check reuse loop']],
+ s:'The site avoided drawing {0} m³ of fresh water this month through {2}% reuse and recorded {3} uncontrolled sludge dumping events, supporting SDG 15 – Life on Land.',
+ src:'Water meters, leak sensors, vendor manifests'},
+3:{n:'Good Health & Well-Being',sn:'Health',o:'Ensure healthy lives and promote well-being for all at all ages',f:'IoT-live',idx:92,
+ k:[['Health-Safe Water Compliance (24h)',98.6,'%',1,.2],['Chemical Exposure per Wash',22,'ml/car',0,1],['Untreated Discharge Events',0,'',0,0],['Safety Incidents (30d)',0,'',0,0],['CO₂e Avoided Today',145,'kg',0,.4]],
+ t:[['Water Quality – Public & Worker Health',[['Turbidity','3.2 NTU','Limit ≤ 5 NTU'],['pH','7.4','Range 6.5–8.5'],['Oil & grease','4.1 mg/L','Limit ≤ 10 mg/L'],['TDS','820 mg/L','↓'],['Water temperature','28 °C','Normal']],'23.7 hours of health-safe operation today'],
+    ['Chemical Safety & Exposure Reduction',[['Detergent dosing','22 ml/car','↓ Baseline 30 ml'],['Total chemicals used','18.4 L/day','↓'],['Auto-dosing coverage','100%','Stable'],['Manual handling events','0','Safe']],'27% reduction in chemical exposure vs baseline'],
+    ['Worker Health & Safety',[['Sludge tank level','41%','Safe ≤ 70%'],['Last sludge handling','12 days ago','OK'],['Wet floor duration','6 min/hr','Low'],['Equipment faults','None','OK'],['Noise level','72 dB','Within limit'],['Days without injury','64','Counter'],['Safety alerts / 1,000 washes','0.3','Low']],'Low exposure, zero-injury operation'],
+    ['Air Quality Proxy & Customer Hygiene',[['Electricity per wash','0.82 kWh','Benchmark 1.05'],['Recycling energy','0.21 kWh/m³','Stable'],['CO₂e avoided','145 kg/day','↑'],['Disinfection status','Active','OK'],['Odor detection','Normal','OK'],['Hygiene complaints (30d)','0','OK']],'Reduced air-pollution-linked health risk, odor-free customer area']],
+ m:[['3.3','Water-borne risk reduction','98.6% compliant water hours'],['3.9','Chemical & pollution reduction','−27% chemicals per wash'],['3.d','Risk & safety management','0 incidents, live alerts']],
+ a:[['Turbidity > 5 NTU','Pause reuse & backwash'],['Sludge > 70%','Schedule removal'],['pH out of range','Auto-dose neutralizer']],
+ s:'Today, the car wash operated {0}% of the time with health-safe recycled water, reduced chemical exposure by 27%, recorded {3} safety incidents, and avoided {4} kg of CO₂e, supporting SDG 3 – Good Health & Well-Being.',
+ src:'PLC/SCADA/IoT sensors (30 sec water & safety, 5 min energy), timestamped tamper-evident logs'},
+4:{n:'Quality Education',sn:'Education',o:'Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all',f:'Systems data (LMS, HRMS, SCADA training logs)',idx:88,
+ k:[['Trained Workforce Coverage',96,'%',0,0],['Avg Training Hours / Employee (YTD)',14.2,'hrs',1,0],['Safety & Water SOP Certification',92,'%',0,0],['Digital Learning Completion',89,'%',0,0],['Knowledge Improvement',31,'%',0,0]],
+ t:[['Workforce Training & Capacity Building',[['Employees trained on recycling system','48 / 50','Target 100%'],['New joinees trained (≤ 30 days)','6 / 6','Target 100%'],['Refresher training completion','91%','Target ≥ 90%'],['Multilingual training coverage','100%','Target ≥ 95%']],'Inclusive access to job-relevant education'],
+    ['Health, Safety & Environmental Education',[['Water recycling & hygiene','94%','Completed'],['Chemical handling (MSDS)','90%','Completed'],['Sludge & waste handling','88%','Gap 12%'],['Emergency response','96%','Completed']],'Improved knowledge reducing health & environmental risks'],
+    ['Digital Learning & Skills',[['Digital SOP access','Enabled','OK'],['QR-based SOP usage','312 scans/mo','↑'],['Micro-learning videos watched','1,246 (YTD)','↑'],['Remote training sessions','18 (YTD)','↑'],['Water treatment operation certified','42 (gap 8)','Staff'],['Sensor & dashboard use certified','39 (gap 11)','Staff'],['Preventive maintenance certified','36 (gap 14)','Largest gap'],['Environmental compliance certified','44 (gap 6)','Staff']],'Equitable access to learning for every role and shift'],
+    ['Community Outreach & Learning Outcomes',[['School / college sessions','6','Conducted'],['Students reached','420','Reach'],['Water awareness workshops','4','Conducted'],['Internships / apprenticeships','3','Active'],['Avg post-training score','84%','Good'],['SOP non-compliance reduction','−42%','↓ Improved'],['Operator errors (MoM)','↓','Improving']],'Measurable learning outcomes, not just attendance']],
+ m:[['4.3','Access to skills & learning','96% workforce trained'],['4.4','Job-relevant skills','Competency matrix & certification'],['4.7','Sustainability education','Water & environment modules']],
+ a:[['Certification expiry in 14 days','Notify employee & manager'],['Training gap > 10% in maintenance staff','Assign refresher module automatically']],
+ s:'The organization achieved {0}% workforce training coverage, delivered an average of {1} learning hours per employee, and measurably improved operational knowledge by {4}%, supporting SDG 4 – Quality Education through continuous, inclusive learning.',
+ src:'LMS, HRMS, SCADA training logs (real-time attendance & SOP usage, daily assessments), employee ID-linked'},
+6:{n:'Clean Water & Sanitation',sn:'Water',o:'Ensure availability and sustainable management of water and sanitation for all',f:'IoT-live',idx:91,
+ k:[['Recycled Water Usage',87,'%',0,.3],['Fresh Water Saved',1240,'m³/mo',0,.1],['Treated Wastewater Compliance',99,'%',0,.2],['Water Loss (Leakage)',2,'%',1,5],['Pump Efficiency',92,'%',0,.4]],
+ t:[['Water Consumption & Savings',[['Fresh water intake','320 m³/day','↓'],['Recycled water usage','278 m³/day','↑'],['Water saved per car','85 L/car','↑'],['Water reuse ratio','87%','Target ≥ 85%']],'87% of water demand met through recycling'],
+    ['Wastewater Treatment & Quality',[['Turbidity','3.2 NTU','Limit ≤ 5 NTU'],['Oil & grease','4.1 mg/L','Limit ≤ 10 mg/L'],['pH','7.4','Range 6.5–8.5'],['TSS','45 mg/L','Limit ≤ 50 mg/L'],['BOD','18 mg/L','Limit ≤ 20 mg/L']],'99% compliance in treated wastewater quality'],
+    ['System Efficiency & Leak Management',[['Pump efficiency','92%','Good'],['Leakage detection','2%','Target < 5%'],['Filtration system runtime','12 hrs/day','Optimised'],['Sensor health','100% online','OK']],'Low water losses and high system uptime'],
+    ['Environmental & Community Impact',[['Total freshwater saved','1,240 m³/mo','Less stress on municipal supply'],['CO₂e avoided (water savings)','65 kg/day','Indirect air & health benefit'],['Odor & microbial control','Normal','Safe discharge']],'Sustainable water management benefiting the local community']],
+ m:[['6.3','Improve water quality & wastewater treatment','99% compliance'],['6.4','Increase water-use efficiency','87% recycled water usage'],['6.5','Integrated water resources management','Monitoring & leak control'],['6.b','Support local water initiatives','Data reporting & savings']],
+ a:[['Turbidity > 5 NTU','Initiate backwash'],['Leak > 5%','Trigger maintenance team'],['pH out of range','Dose neutralizer automatically']],
+ s:'The car wash achieved {0}% water recycling, saved {1} m³ of fresh water this month, and maintained {2}% compliance in treated wastewater quality, supporting SDG 6 – Clean Water & Sanitation through sustainable water management and community impact.',
+ src:'PLC/SCADA IoT sensors, water meters, treatment logs (30 sec sensors, daily KPI roll-up)'},
+17:{n:'Partnerships for the Goals',o:'Strengthen the means of implementation and revitalise global partnerships',f:'Manual / reporting data (not IoT)',idx:80,
+ k:[['Active Partnerships',7,'',0,0],['Community Programs',4,'',0,0],['Students Reached',420,'',0,0],['Sites Sharing Data',3,'',0,0],['Reports Shared with Partners',12,'YTD',0,0]],
+ t:[['Public-Private & Civil Society',[['Municipal / pollution board liaison','Quarterly','Compliance shared'],['NGO & school partners','4','Active'],['Technology partner (BlueVerse)','1','IoT + analytics'],['Vendor partners (sludge, chemicals)','2','Audited']],'Effective partnerships building on shared experience'],
+    ['Data Sharing & Replication',[['Multi-site dashboard','3 sites','Roll-out plan'],['Open ESG report downloads','12','YTD'],['Best-practice playbooks shared','2','↑'],['Joint community drives','4','Awareness']],'Replicable model for other operators']],
+ m:[['17.17','Encourage effective public, public-private & civil society partnerships','7 partnerships, 4 community programs']],
+ a:[['Partner report due in 7 days','Auto-generate and send'],['Partnership agreement expiring','Notify owner']],
+ s:'The organisation maintained {0} active partnerships, ran {1} community programs reaching {2} students and shared ESG reports with partners, supporting SDG 17 – Partnerships for the Goals.',
+ src:'CRM, CSR logs, ESG report archive (manual entry)'}
+};
+const DONE={};
+const $=s=>document.querySelector(s),nav=$('#nav'),main=$('#main');let cur='all',vals={};
+const fmt=(v,d)=>Number(v).toLocaleString('en-IN',{minimumFractionDigits:d,maximumFractionDigits:d});
+function spark(c,seed){let p=[],x=seed*7+3;for(let i=0;i<14;i++){x=(x*9301+49297)%233280;p.push(12+(x/233280)*14+i*.4)}
+ return `<svg viewBox="0 0 140 30" preserveAspectRatio="none" aria-hidden="true"><polyline fill="none" stroke="${c}" stroke-width="2" points="${p.map((y,i)=>i*10.7+','+(30-y)).join(' ')}"/></svg>`}
+function mkNav(){let h=`<button role="tab" aria-selected="${cur=='all'}" data-t="all"><b style="background:#1b9aa0">★</b>Overview</button>`;
+ Object.keys(S).forEach(i=>h+=`<button role="tab" aria-selected="${cur==i}" data-t="${i}"><b style="background:${C[i]}">${i}</b>${S[i].sn||S[i].n.split(' ')[0]}</button>`);nav.innerHTML=h}
+function overview(){let all=Object.keys(C).map(Number).sort((a,b)=>a-b),h=`<h2 style="margin:0">Coverage of BlueVerse SDG mapping</h2><p style="color:var(--mut);margin:4px 0 0">11 SDGs, 14 targets. Every SDG has its own tab, built from IoT, system and manual data sources.</p><div class="ov">`;
+ all.forEach(i=>{const d=DONE[i],s=S[i],name=d?d[0]:s.n,idx=d?d[1]:s.idx,tag=d?'Spec from PDF':s.f;
+ h+=`<button class="oc" data-t="${d?'all':i}"><div style="background:${C[i]}"><span>SDG ${i}</span><span>${idx}/100</span></div><p><b style="color:var(--ink)">${name}</b><br><span class="tag">${tag}</span></p></button>`});
+ const avg=Math.round(all.reduce((a,i)=>a+(DONE[i]?DONE[i][1]:S[i].idx),0)/all.length);
+ main.innerHTML=h+`</div><section style="margin-top:16px"><h3>Overall ESG score: ${avg} / 100</h3><p style="margin:0;color:var(--mut)">Simple average of the 11 SDG indices. Replace with your weighting once you finalise the scoring method.</p></section><footer>Demo values. Connect each tile to its SCADA/IoT tag to go live.</footer>`}
+function panel(i){const s=S[i];vals[i]=vals[i]||s.k.map(k=>k[1]);
+ let h=`<div class="hero" style="background:${C[i]}"><div class="n">${i}</div><div><h2>SDG ${i} – ${s.n}</h2><p>${s.o}</p><span class="chip">Data type: ${s.f}</span></div><div class="idx">SDG ${i} Index<span>${s.idx}/100</span></div></div>`;
+ h+=`<div class="kpis">`+s.k.map((k,j)=>`<div class="k"><small><span class="st${k[5]?' w':''}"></span>${k[0]}</small><strong id="v${j}">${fmt(vals[i][j],k[3])}</strong><em>${k[2]}</em>${spark(C[i],i*10+j)}</div>`).join('')+`</div><div class="grid">`;
+ s.t.forEach(t=>{h+=`<section><h3>${t[0]}</h3><div class="sc"><table><tr><th>Metric</th><th>Live value</th><th>Trend / limit</th></tr>${t[1].map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td><td>${r[2]}</td></tr>`).join('')}</table></div><div class="kpiout">KPI output: ${t[2]}</div></section>`});
+ h+=`<section><h3>SDG ${i} mapping panel (audit-ready)</h3><div class="sc"><table><tr><th>Target</th><th>Live evidence</th><th>Status</th></tr>${s.m.map(m=>`<tr><td><b>${m[0]}</b> – ${m[1]}</td><td>${m[2]}</td><td><span class="st"></span></td></tr>`).join('')}</table></div></section>`;
+ h+=`<section class="alert"><h3>Alerts & actions</h3><ul>${s.a.map(a=>`<li><b>Alert:</b> ${a[0]} → <i>${a[1]}</i></li>`).join('')}</ul></section>`;
+ h+=`<section><h3>Data refresh & governance</h3><ul><li><b>Refresh rate:</b> 30 sec for sensors, daily roll-up for KPIs</li><li><b>Sources:</b> ${s.src}</li><li><b>Audit trail:</b> Timestamped, sensor ID-linked, tamper-evident</li></ul></section>`;
+ h+=`<section><h3>One-line SDG ${i} statement (auto-generated)</h3><p class="stmt" id="stm"></p><button id="cp">Copy statement</button></section></div><footer>Demo values. Values update every few seconds to show live behaviour.</footer>`;
+ main.innerHTML=h;stmt(i);$('#cp').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText($('#stm').textContent).then(()=>e.target.textContent='Copied').catch(()=>{})}}
+function stmt(i){const s=S[i];$('#stm').textContent='"'+s.s.replace(/\{(\d)\}/g,(m,n)=>fmt(vals[i][n],s.k[n][3]))+'"'}
+function show(t){cur=t;mkNav();t=='all'?overview():panel(t);scrollTo(0,0)}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)show(b.dataset.t)});
+setInterval(()=>{$('#clk').textContent=new Date().toLocaleTimeString('en-IN');if(cur=='all')return;const s=S[cur];
+ s.k.forEach((k,j)=>{if(!k[4])return;const b=k[1],v=vals[cur][j]+(Math.random()-.5)*b*k[4]/100;vals[cur][j]=Math.min(Math.max(v,b*.97),b*1.03);if(k[2]=='%'&&vals[cur][j]>100)vals[cur][j]=100;$('#v'+j).textContent=fmt(vals[cur][j],k[3])});stmt(cur)},4000);
+$('#clk').textContent=new Date().toLocaleTimeString('en-IN');
+$('#th').onclick=()=>{const r=document.documentElement,d=r.dataset.theme=='dark'||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);r.dataset.theme=d?'light':'dark'};
+show('all');
+</script>
+</body>
+</html>
